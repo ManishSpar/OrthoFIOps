@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Related Patient Account">
+        <lightning-layout-item size="12" class="slds-p-left--small slds-p-right--small">
+            <lightning-input type="Search" 
+                onchange={handleAccountChange}
+                class="slds-m-bottom_small"
+                placeholder="Search by Patient Name, Patient ID"
+                value={searchKey}>
+            </lightning-input>
+        </lightning-layout-item>
+        <lightning-datatable 
+            data={data}
+            columns={columns} 
+            key-field="Id" 
+            hide-checkbox-column="true">
+        </lightning-datatable>
+    </lightning-card>
+</template>

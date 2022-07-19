@@ -1,0 +1,86 @@
+<template>
+       
+        <lightning-card>
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                  <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-case" title="Case">
+                      <lightning-icon icon-name="standard:case" alternative-text="Case" title="Case"></lightning-icon>
+                      <span class="slds-assistive-text">Cases</span>
+                    </span>
+                  </div>
+                  <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                      <a href="#" class="slds-card__header-link slds-truncate" title="case">
+                        <span>Open Cases ({openCaseCount}) </span>
+                      </a>
+                    </h2>
+                  </div>
+                  <div class="slds-no-flex">
+                    <!-- <button class="slds-button slds-button_neutral">New</button>-->
+                     <lightning-button type="New" variant="brand-outline" label="New" onclick={createcase}></lightning-button>
+
+                    </div>
+                </header>
+              </div>
+           <!-- &nbsp;&nbsp; <p><b>Open Cases ({openCaseCount}) </b></p>-->
+
+                <lightning-layout>
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                        <lightning-input label="Search with Patient Name"  placeholder="Search with Patient Name" type="search"  onchange={searchOpenCase} value={searchKey}></lightning-input>
+                            <br/>
+                                         
+                </lightning-layout-item>
+                </lightning-layout>
+                    <lightning-datatable data={opencases} columns={columns} key-field="Id"  hide-checkbox-column="true">
+                        
+                    </lightning-datatable>
+                    <footer class="slds-card__footer">
+                        <lightning-button variant="brand-outline" label="View All" title="Successful action" onclick={handleNavigate}
+                class="slds-m-left_x-small"></lightning-button>
+                      </footer>
+        </lightning-card>
+        <lightning-card > 
+
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                  <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-case" title="Case">
+                      <lightning-icon icon-name="standard:case" alternative-text="Case" title="Case"></lightning-icon>
+                      <span class="slds-assistive-text">Cases</span>
+                    </span>
+                  </div>
+                  <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                      <a href="#" class="slds-card__header-link slds-truncate" title="case">
+                        <span>Closed Cases ({closeCaseCount}) </span>
+                      </a>
+                    </h2>
+                  </div>
+                  <div class="slds-no-flex">
+                    <!-- <button class="slds-button slds-button_neutral">New</button>-->
+                     <lightning-button type="New" variant="brand-outline" label="New" onclick={createcase}></lightning-button>
+
+                    </div>
+                </header>
+              </div>
+         <!--   &nbsp;&nbsp; <p><b>Closed Cases ({closeCaseCount}) </b></p>-->
+                <lightning-layout>
+                <lightning-layout-item flexibility="auto" padding="around-small">
+                        <lightning-input label="Search with Patient Name"  placeholder="Search with Patient Name" type="search"  onchange={searchClosedCase} value={ClosedSearchKey}></lightning-input>
+                       
+                                            
+                </lightning-layout-item>
+                </lightning-layout>
+
+            <lightning-datatable data={cases} columns={columns} key-field="Id" hide-checkbox-column="true">
+                
+            </lightning-datatable>
+            <footer class="slds-card__footer">
+                <lightning-button variant="brand-outline" label="View All" title="Successful action" onclick={handleNavigateCaseClosed}
+        class="slds-m-left_x-small"></lightning-button>
+              </footer>
+        </lightning-card>
+    <div></div>
+        
+    </template>

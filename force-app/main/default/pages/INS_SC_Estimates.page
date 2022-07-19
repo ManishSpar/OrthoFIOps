@@ -1,0 +1,21 @@
+<apex:page standardController="Insurance_Score__c" showHeader="false" 
+sidebar="false" showChat="false">
+    <style>
+        .subSection
+        {
+            background-color: lightgray;
+            color: black;
+            font-family: sans-serif;
+            font-size: 12px; 
+        }
+    </style>
+    <table width="100%">
+        <tr>
+            <td class="subSection">
+Great - Aware of all of their networks and what the fee schedules are- both leased and direct, trained by config team, adjust their benefits accordingly pre-contract, partners accordingly w/ OFi-understands tx details page and how this populates the claim/ledgers, understand how to/when to use the recheck benefits through OFi, aware of SLA, pre-populates most pt insurance prior to np confirmation call-makes the effort to do this, how to edit schedule to remove the need to contact PA line, updates insurance relationships<br/>
+Good- Knows they are in-network but no in-depth knowledge of network rules, unable to minimize write-offs, pre-populates sporadically-does not make a priority, understands how tx details populate the claim, aware of eligibility SLAs but not the best strategic partner, fee schedules are loaded in the system, updates insurance relationship<br/>
+Poor - Does not know network status, Overrides slider to remove discounts that are provided, does not provide fee schedules when INN, Distrust in our benefit verifications and overriding our estimates, does not pre-populate, does not care about SLA, doesn’t understand the partnership, does not update insurance relationships
+            </td>
+        </tr>
+    </table>
+</apex:page>

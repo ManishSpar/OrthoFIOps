@@ -1,0 +1,4 @@
+:host
+{
+    --slds-c-accordion-summary-color-background: var(--lwc-colorBackgroundButtonDefaultActive,rgb(243, 243, 243));
+}

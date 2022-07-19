@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="Closed Cases">
+        <p slot="footer">
+            <lightning-layout multiple-rows="true">
+                <lightning-layout-item size="12">
+                    <lightning-datatable key-field="Id"
+                                        data={data} 
+                                        columns={columns}
+                                        class="caseTable"
+                                        onsort={sortColumns}
+                                        sorted-by={sortedBy}
+                                        sorted-direction={sortedDirection} 
+                                        data-id="closed_cases"
+                                        hide-checkbox-column="true">
+                    </lightning-datatable>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" class="slds-p-around--medium">
+                    <lightning-layout>
+                        <lightning-layout-item size="4">
+                            <lightning-button label="Previous" icon-name="utility:chevronleft" icon-position="left" onclick={handlePrev} disabled={disablePrev} class="slds-float--left"></lightning-button>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="4" class="slds-align--absolute-center">
+                            Page {pageNumber} | Showing records from {fromRecords} to {toRecords}
+                        </lightning-layout-item>
+                        <lightning-layout-item size="4">
+                            <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" disabled={disableNext} onclick={handleNext}></lightning-button>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </lightning-layout-item>
+            </lightning-layout>
+        </p>
+    </lightning-card>
+</template>

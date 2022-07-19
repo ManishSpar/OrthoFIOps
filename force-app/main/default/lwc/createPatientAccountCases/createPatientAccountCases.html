@@ -1,0 +1,67 @@
+<template>
+    <lightning-layout multiple-rows="true">
+        <lightning-layout-item size="12" class="slds-p-around--medium">
+            <lightning-record-view-form
+                        object-api-name="Account"
+                        record-id={recordId}>
+                <b>Practice Account</b>: <lightning-output-field variant="label-hidden" field-name="Name"> </lightning-output-field>
+            </lightning-record-view-form>
+        </lightning-layout-item>
+        <lightning-layout-item size="12" class="slds-p-around--medium">
+            <lightning-card title={cardTitle}>
+                <div class="slds-m-around_medium">
+                    <div if:false={isCasePage}>
+                        <lightning-input type="Search" onchange={handleAccountChange} class="slds-m-bottom_small" label="Search"
+                            value={searchKey}>
+                        </lightning-input>
+                        <lightning-datatable key-field="Id"
+                                            data={data} 
+                                            columns={columns} 
+                                            sorted-by={sortedBy}
+                                            sorted-direction={sortedDirection} 
+                                            onsort={sortColumns} 
+                                            onrowselection={getSelectedPatientAccounts}
+                                            data-id="datarow"
+                                            selected-rows={selection}>
+                        </lightning-datatable>
+                        <div if:false={isCasePage} class="slds-m-around_medium slds-p-bottom--large">
+                            <lightning-button label="Next" class="slds-float--right" icon-name="utility:chevronright" icon-position="right"
+                                onclick={nextHandler}></lightning-button>
+                        </div>
+                    </div>
+                    <div if:true={isCasePage}>
+                        <lightning-record-edit-form object-api-name="Case" onsubmit ={createCases}>
+                            <lightning-input-field field-name="Type" required="true"></lightning-input-field>
+                            <lightning-input-field field-name="Category__c" required="true"></lightning-input-field>
+                            <lightning-input-field field-name="Subject"></lightning-input-field>
+                            <lightning-input-field field-name="Description"></lightning-input-field>
+                            <lightning-input-field field-name="Action_Taken__c"></lightning-input-field>
+                            <lightning-input-field field-name="FCR__c" onchange={changeStatus}></lightning-input-field>
+                            <lightning-input-field field-name="Insurance_Carrier__c"></lightning-input-field>
+                            <lightning-input-field field-name="Status" disabled="true" value={statusValue}></lightning-input-field>
+                            <lightning-input-field field-name="ContactId" value={contactId} class="slds-hide"></lightning-input-field>
+                            <div class="slds-grid slds-wrap slds-m-bottom--large">
+                                <div class="w33 slds-p-left--xx-small">
+                                  <label class="slds-form-element__label">Contact</label>
+                                </div>
+                                <div class="slds-size_2-of-3">
+                                    <c-custom-lookup filter={filterStr} obj-name="Contact" search-placeholder="Search Contact" icon-name="standard:contact" onlookupselected={handleAccountSelection}> </c-custom-lookup>
+                                </div>
+                            </div>
+                            <lightning-button class="slds-m-top_small" variant="neutral" name="Previous" label="Previous" onclick={previous}>
+                            </lightning-button>
+                            <lightning-button class="slds-m-top_small slds-float--right" variant="success" type="submit" name="Create_Cases" label="Create Cases" disabled={casesSpinner}>
+                            </lightning-button>
+                        </lightning-record-edit-form>
+                        <div if:true={casesSpinner} class="slds-spinner_inline spinner-padding">
+                            <lightning-spinner variant="brand" 
+                                               alternative-text="Creating Cases"     
+                                               size="medium">
+                            </lightning-spinner>
+                        </div>
+                    </div>
+                </div>
+            </lightning-card>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

@@ -1,0 +1,105 @@
+<template>
+    <div class="slds-box">
+        <lightning-layout-item size="12">
+            <lightning-input type="Search" onchange={handleAccountChange} placeholder="Search by Patient Name, Case Number or Patient Id" value={searchKey}></lightning-input>
+        </lightning-layout-item>
+        <lightning-layout-item size="12">
+            <lightning-layout>
+                <lightning-layout-item size="4" padding="around-small">
+                    <lightning-combobox
+                        options={statusPicklist}
+                        placeholder="Select Status"
+                        variant="label-hidden"
+                        data-id="status"
+                        onchange={filterChange}>
+                    </lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" padding="around-small">
+                    <lightning-combobox
+                        options={subStatusPicklist}
+                        placeholder="Select Follow-up Sub Status"
+                        variant="label-hidden"
+                        data-id="substatus"
+                        onchange={filterChange}>
+                    </lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" padding="around-small">
+                    <lightning-combobox
+                        options={typePicklist}
+                        placeholder="Select Type"
+                        variant="label-hidden"
+                        data-id="type"
+                        onchange={filterChange}>
+                    </lightning-combobox>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+    </div>
+    <lightning-card title="All Cases Pending Practice Response">
+        <lightning-layout multiple-rows="true">
+            <lightning-layout-item size="12" class="slds-p-around--large">
+                <lightning-datatable key-field="Id"
+                                    data={pendingStatusData} 
+                                    columns={columns}
+                                    class="caseTable"
+                                    onsort={sortColumnsPendingCases}
+                                    sorted-by={sortedByPendingCases}
+                                    sorted-direction={sortedDirectionPendingCases} 
+                                    data-id="pending_cases"
+                                    hide-checkbox-column="true">
+                </lightning-datatable>
+            </lightning-layout-item>
+        </lightning-layout>
+        <lightning-layout-item size="12" class="slds-p-around--medium">
+            <lightning-layout class="slds-p-left--large">
+                <lightning-layout-item size="4">
+                    <lightning-button label="Previous" icon-name="utility:chevronleft" icon-position="left" onclick={SubStatushandlePrev} disabled={disablePrevPendingCases} class="slds-float--left"></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" class="slds-align--absolute-center">
+                    Page {subStatuspageNumber} | Showing records from {fromRecordsPendingCase} to {toRecordsPendingCase}
+                </lightning-layout-item>
+                <lightning-layout-item size="4" class="slds-text-align--right slds-p-right--large">
+                    <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" disabled={disableNextPendingCases} onclick={SubStatushandleNext}></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+            <br/>
+            <br/>
+            <br/>
+        </lightning-layout-item>
+    </lightning-card>
+    <lightning-card title="All Open Cases">        
+            <p slot="footer">
+                <lightning-layout multiple-rows="true">
+                    <lightning-layout-item size="12">
+                        <lightning-datatable key-field="Id"
+                                            data={data} 
+                                            columns={columns}
+                                            class="caseTable"
+                                            onsort={sortColumns}
+                                            sorted-by={sortedBy}
+                                            sorted-direction={sortedDirection} 
+                                            data-id="open_cases"
+                                            hide-checkbox-column="true">
+                        </lightning-datatable>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" class="slds-p-around--medium">
+                        <lightning-layout>
+                            <lightning-layout-item size="4">
+                                <lightning-button label="Previous" icon-name="utility:chevronleft" icon-position="left" onclick={handlePrev} disabled={disablePrev} class="slds-float--left"></lightning-button>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4" class="slds-align--absolute-center">
+                                Page {pageNumber} | Showing records from {fromRecords} to {toRecords}
+                            </lightning-layout-item>
+                            <lightning-layout-item size="4">
+                                <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" disabled={disableNext} onclick={handleNext}></lightning-button>
+                            </lightning-layout-item>
+                        </lightning-layout>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </p>
+    </lightning-card>
+    <c-closed-cases search-key={searchKey} substatus={substatus} type={type}></c-closed-cases>
+</template>

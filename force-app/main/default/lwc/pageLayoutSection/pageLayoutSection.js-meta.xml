@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <isExposed>true</isExposed>
+    
+    <targets>
+      <target>lightning__RecordPage</target>
+    </targets>
+    
+     <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="label" type="String" placeholder="Enter section name..." />
+            <property name="fieldSetName" type="String" placeholder="Enter Field Set developer name..." />
+            <property name="expanded" type="Boolean" default="true" />
+            <property name="columns" type="Integer" default="2" max="10" required="true"/>
+            <property name="readonly" type="Boolean" default="false" />
+            <property name="density" type="String" datasource="auto,comfy,compact" default="auto"/>
+        </targetConfig>
+    </targetConfigs>
+
+
+</LightningComponentBundle>

@@ -1,0 +1,4 @@
+<apex:page lightningStylesheets="true" label="No Match">
+  <head><title>No Match</title></head>
+  <center><h1>Unable to find matching record for incoming call. Use global search to find an appropriate Account.</h1></center>
+</apex:page>

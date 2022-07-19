@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <isExposed>true</isExposed>
+     <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="objName" type="String" label="Object API Name" 
+                        description="Specify the API name of the Object you want a show lookup."/>
+            <property name="iconName" type="String" label="Icon Name from Lightning library" 
+                        description="Specify the icon name e.g.standard:contact"/>
+            <property name="filter" type="String" label="Filter criteria" 
+                        description="Specify the filter criteria to be applied."/>
+            <property name="selectedId" type="String" label="Selected Patient Account Id"/>
+            <property name="selectedName" type="String" label="Selected Patient Account Name"/>
+            <property name="fieldLabel" type="String" label="Field Label" />
+            <property name="recordId" type="String" label="Patient Id" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

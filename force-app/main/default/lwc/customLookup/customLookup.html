@@ -1,0 +1,69 @@
+<template>
+    <div class="slds-m-bottom--small">
+        <div class="slds-form-element">
+            <div class="slds-form-element__control">
+                <div class="slds-combobox_container">
+                    <div id="box" class={boxClass} aria-expanded="true" aria-haspopup="listbox" role="combobox">
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                            <span class="slds-form-element__label">
+                                <abbr title="required" class="slds-required">*</abbr>{fieldLabel}
+                            </span>
+                            <template if:true={isValueSelected}>
+                                <div id="lookup-pill" class="slds-pill-container">
+                                    <lightning-pill class="pillSize" label={selectedName} name={selectedName} onremove={handleRemovePill} href={href}>
+                                        <lightning-icon icon-name={iconName} alternative-text="acc" ></lightning-icon>
+                                    </lightning-pill>
+                                </div>
+                            </template>
+                            <template if:false={isValueSelected}>
+                                <div class="slds-p-top_none">
+                                    <lightning-input class={inputClass} type="search" id="input" value={searchTerm}
+                                                     onclick={handleClick} onblur={onBlur} onchange={onChange}
+                                                     variant="label-hidden" autocomplete="off" placeholder={searchPlaceholder}>
+                                    </lightning-input>
+                                </div>
+                            </template>
+                        </div>
+                        <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                <template for:each={records} for:item="suggestion">
+                                    <li key={suggestion.record.Id} class="slds-border--bottom" onclick={onSelect} data-id={suggestion.record.Id} role="presentation" data-name={suggestion.record.Name}>
+                                       <div class="slds-lookup__item-action--label" role="option">
+                                            <template if:false={showRichResultsForAccount}>
+                                                <lightning-icon class="slds-icon slds-icon--small slds-icon-text-default" icon-name={iconName} alternative-text={objName} size="small"></lightning-icon>
+                                            </template>
+                                            <span class="slds-truncate"><strong>{suggestion.record.Name}</strong></span>
+                                            <template if:true={showRichResultsForAccount}>
+                                                <lightning-layout multiple-rows="true" class="slds-box">
+                                                    <lightning-layout-item size="3">Patient ID:</lightning-layout-item>
+                                                    <lightning-layout-item size="9">{suggestion.record.Patient_ID__c}</lightning-layout-item>
+                                                    <lightning-layout-item size="3">Birthdate:</lightning-layout-item>
+                                                    <lightning-layout-item size="9"><lightning-formatted-date-time value={suggestion.record.PersonBirthdate}></lightning-formatted-date-time></lightning-layout-item>
+                                                    <lightning-layout-item size="3">FRP (Guardian):</lightning-layout-item>
+                                                    <lightning-layout-item size="9">
+                                                        {suggestion.guardianName}
+                                                    </lightning-layout-item>
+                                                    <lightning-layout-item size="3">Address:</lightning-layout-item>
+                                                    <lightning-layout-item size="9">
+                                                        <lightning-formatted-address
+                                                            street={suggestion.record.PersonMailingStreet}
+                                                            city={suggestion.record.PersonMailingCity}
+                                                            country={suggestion.record.PersonMailingCountry}
+                                                            province={suggestion.record.PersonMailingState}
+                                                            postal-code={suggestion.record.PersonMailingPostalCode}
+                                                            disabled
+                                                        ></lightning-formatted-address> 
+                                                    </lightning-layout-item>
+                                                </lightning-layout>
+                                            </template>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

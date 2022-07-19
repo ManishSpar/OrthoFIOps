@@ -1,0 +1,13 @@
+<template>
+
+    <lightning-accordion allow-multiple-sections-open="True" active-section-name={activeSection}>
+
+        <lightning-accordion-section name="accordianSection" label={label}>
+            <lightning-record-form object-api-name={objectApiName}  record-id={recordId}  fields={fields.data} 
+                                   mode={mode} columns={columns} density={density}>
+            </lightning-record-form>
+        </lightning-accordion-section>
+
+    </lightning-accordion>
+
+</template>
